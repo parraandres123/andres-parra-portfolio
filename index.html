@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Andrés Parra Sánchez</title>
+<meta name="description" content="Portfolio of Andrés Parra Sánchez, product and industrial designer.">
+<style>
+@font-face {
+  font-family: 'ABC Gravity';
+  src: url("fonts/abc-gravity/ABCGravityTrial-UltraItalic.otf") format("opentype");
+  font-weight: 900;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Armand Grotesk';
+  src: url("fonts/armand-grotesk/ArmandGroteskTest-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Armand Grotesk';
+  src: url("fonts/armand-grotesk/ArmandGroteskTest-SemiLight.otf") format("opentype");
+  font-weight: 350;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Armand Grotesk';
+  src: url("fonts/armand-grotesk/ArmandGroteskTest-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Armand Grotesk';
+  src: url("fonts/armand-grotesk/ArmandGroteskTest-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Armand Grotesk';
+  src: url("fonts/armand-grotesk/ArmandGroteskTest-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+</style>
+<style>
+:root{color-scheme:dark;--red:#FF2D17;--bg:#141414;--fg:#EAE5D6;--muted:#8d8878;--line:#6a665b;--phbg:#262626 radial-gradient(#484848 1px,transparent 1.3px) 0 0/16px 16px}
+[hidden]{display:none!important}
+*{box-sizing:border-box;font-family:"Armand Grotesk",sans-serif}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.4 "Armand Grotesk",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+a:focus-visible,button:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* Header: navigation strip and red name banner */
+header{padding:14px 24px 0}
+.strip{display:grid;grid-template-columns:1fr auto;padding-bottom:8px;border-bottom:1px solid var(--line);font-size:clamp(.85rem,1.1vw,1.05rem)}
+nav{display:flex;justify-content:flex-end;align-items:center;gap:18px}
+nav a,nav button{display:inline-block;padding:0 6px;transition:transform .2s ease}
+nav a:hover,nav button:hover{transform:scale(1.1)}
+nav a.on{text-decoration:underline;text-underline-offset:5px}
+.bar{background:var(--red);margin-top:8px;padding:0 16px;overflow:hidden;position:relative}
+.bar a{display:inline-block;white-space:nowrap;color:#fff;font-family:"ABC Gravity","Arial Black",Impact,sans-serif;font-size:100px;font-weight:900;font-style:italic;line-height:1.05;letter-spacing:-.01em;position:relative;will-change:transform;transition:transform .12s ease-out}
+.bar:hover a{transform:translateX(0)}
+
+.page{display:none;padding:20px 24px 60px}
+.page.on{display:block}
+#shop.page{position:fixed;inset:var(--hh) 0 0;z-index:2;margin:0;padding:0;overflow:hidden}
+#shop .ring{position:relative;width:100%;height:100%;margin:0;overflow:hidden}
+#shop .prod{--s:1;position:absolute;left:0;top:0;width:clamp(110px,16vmin,190px);text-align:center;transform:translate(-50%,-50%) scale(var(--s));transition:transform .2s ease;will-change:left,top}
+#shop .prod:hover{--s:1.08;z-index:5}
+#shop .prod .c{aspect-ratio:1;border-radius:50%;background:var(--phbg);overflow:hidden}
+#shop .prod small{display:block;margin-top:6px;font-size:12px;line-height:1.25}
+#shop .prod-title{font-weight:700}
+#shop .prod-price{font-weight:300}
+
+/* Home: project index grouped by year */
+.yr{padding:10px 0 8px 9vw;font-size:clamp(.9rem,1.25vw,1.2rem);font-weight:300;border-top:1px solid var(--line)}
+.line{display:grid;grid-template-columns:50% 1fr;padding:6px 0;border-top:1px solid var(--line);font-size:clamp(.9rem,1.25vw,1.2rem);line-height:1.15}
+.line span:first-child{font-weight:700}
+.line span+span{font-weight:300}
+#index>:last-child{border-bottom:1px solid var(--line)}
+.line:hover{background:var(--red);color:#fff}
+.wip{color:var(--red);animation:wip-blink 1s steps(2,start) infinite}
+@keyframes wip-blink{to{visibility:hidden}}
+
+/* Hover preview: centered and limited to a quarter of the screen */
+.prev{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:max-content;max-width:calc(100vw - 32px);min-width:0;max-height:50vh;overflow:hidden;background:linear-gradient(155deg,rgba(235,240,225,.58),rgba(115,135,120,.43) 48%,rgba(15,35,27,.72));-webkit-backdrop-filter:blur(20px) saturate(135%);backdrop-filter:blur(20px) saturate(135%);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:14px;padding:14px;z-index:60;font-size:12px;line-height:1.4;pointer-events:none;opacity:0;transition:opacity .15s}
+.prev.on{opacity:1;pointer-events:auto}
+.prev .hd{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px;font-size:13px;font-weight:700}
+.prev .hd button{font-size:18px;line-height:1;padding:0 2px}
+.prev a.go{display:inline-block;margin-top:10px;text-decoration:underline;color:#fff}
+.prev b{display:block;margin-bottom:10px;font-size:13px}
+.prev .im{width:fit-content;max-width:100%;background:var(--phbg);overflow:hidden;margin-bottom:10px}
+.prev .im img{width:auto;height:auto;max-width:100%;max-height:26vh;object-fit:contain}
+.prev p{margin:0;color:#ddd}
+
+/* Selected work: yearly grid with varied image sizes */
+#sw .yr{border-top:0;border-bottom:1px solid var(--line);padding:8px 0 8px 9vw;margin-bottom:8px}
+.sw{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-items:start;padding-bottom:48px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.card .im{background:var(--phbg);overflow:hidden}
+.card .im img{width:100%;height:auto;object-fit:contain}
+.card:hover .im{opacity:.8}
+.cap{margin-top:8px;font-size:13px;font-weight:700;line-height:1.25}
+.cap .category{font-weight:300}
+
+/* Proyecto abierto */
+.back{display:inline-block;margin-bottom:24px}
+.back:hover{text-decoration:underline}
+.proj h1{font-weight:700;font-size:clamp(2rem,5vw,4.4rem);line-height:1;margin:0 0 14px}
+.proj .meta{color:var(--muted);font-weight:300;margin:0 0 24px}
+.proj .txt{max-width:60ch;font-size:1.15rem;font-weight:400;margin:0 0 40px}
+.proj .im{background:var(--phbg);margin-bottom:20px;overflow:hidden}
+.proj .im img{width:100%;height:auto;object-fit:contain}
+
+/* About me: pantalla completa en dos columnas */
+#about-me{position:fixed;inset:0;z-index:90;margin:0;padding:0;background:var(--bg);overflow:auto}
+.ab-top{display:flex;justify-content:space-between;align-items:center;margin:0 20px;padding:8px 0;border-bottom:1px solid var(--line);font-size:clamp(1.1rem,1.7vw,1.6rem);font-weight:700}
+.ab-top a{display:inline-flex;transition:transform .2s}
+.ab-top a:hover{transform:scale(1.1)}
+.ab{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;padding:12px 20px 60px;font-size:clamp(1.05rem,1.7vw,1.7rem);line-height:1.25}
+.ab p{margin:0 0 .3em;font-weight:400;letter-spacing:-.01em}
+.ab2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:64px;padding-top:12px;border-top:1px solid var(--line)}
+.ab2 p{font-weight:400}
+.ab2 a:hover{text-decoration:underline}
+.ab2 > div > p:first-child{font-weight:700;font-size:1.05em}
+body.noscroll{overflow:hidden}
+
+/* Experiment: solo fotos */
+.masonry{columns:4;column-gap:18px}
+.masonry div{break-inside:avoid;margin-bottom:18px;background:var(--phbg);overflow:hidden;transform:rotate(var(--tilt,0deg))}
+.masonry img{display:block;width:100%;height:auto;object-fit:contain}
+
+/* Productos del shop */
+.ring{position:relative;width:74vmin;height:74vmin;margin:0 auto}
+.ring .mid{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);pointer-events:none}
+.prod{--r:29vmin;position:absolute;left:50%;top:50%;width:14vmin;text-align:center;
+  transform:translate(-50%,-50%) rotate(var(--a)) translateY(calc(var(--r)*-1)) rotate(calc(var(--a)*-1)) scale(var(--s,1));transition:transform .3s ease}
+.prod:hover{--s:1.35;z-index:5}
+.prod .c{aspect-ratio:1;border-radius:50%;background:var(--phbg);overflow:hidden}
+.prod small{display:block;margin-top:6px;font-size:12px;line-height:1.25}
+.prod-title{font-weight:700}
+.prod-price{font-weight:300}
+
+/* Ventana de producto y carrito */
+.modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.6);display:none;place-items:center;padding:20px}
+.modal.on{display:grid}
+.sheet{position:relative;background:var(--bg);width:min(940px,100%);max-height:90vh;overflow:auto;padding:24px;display:grid;grid-template-columns:1.2fr 1fr;gap:28px}
+.sheet .x{position:absolute;top:12px;right:16px;font-size:22px}
+.main{aspect-ratio:1;background:var(--phbg);overflow:hidden}
+.thumbs{display:flex;gap:8px;margin-top:8px}
+.thumbs button{width:64px;height:64px;background:var(--phbg);overflow:hidden}
+.sheet h3{font-weight:700;font-size:1.8rem;line-height:1.1;margin:0 0 8px}
+.sheet p{margin:0 0 1em}
+.muted{color:var(--muted)}
+.btn{display:inline-block;border:1px solid var(--fg);padding:10px 18px}
+.btn:hover{background:var(--fg);color:var(--bg)}
+.cart{position:fixed;top:0;right:0;bottom:0;width:min(380px,100%);background:var(--bg);z-index:120;padding:24px;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .3s;border-left:1px solid var(--line)}
+.cart.on{transform:none}
+.cart .top{display:flex;justify-content:space-between;margin-bottom:20px}
+.cart ul{list-style:none;margin:0;padding:0;flex:1;overflow:auto}
+.cart li{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-top:1px solid #333}
+.cart-title{font-weight:700}
+.cart li button{padding:0 6px}
+#checkout-status{min-height:1.4em;color:var(--muted);font-size:13px}
+#checkout:disabled{opacity:.6;cursor:not-allowed}
+#cartbtn{display:inline-flex;align-items:flex-start;gap:2px}
+#cartn{font-size:12px;line-height:1}
+
+@media (max-width:760px){
+  .strip{grid-template-columns:1fr;gap:6px}
+  nav{justify-content:flex-start;flex-wrap:wrap;gap:6px 14px}
+  .page{padding:16px}
+  .ab,.ab2{grid-template-columns:1fr}
+  .line{grid-template-columns:1fr}
+  .line span+span{display:none}
+  .yr{padding-left:0}
+  .sw{grid-template-columns:repeat(2,1fr)}
+  .masonry{columns:2}
+  .sheet{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="strip">
+    <div></div>
+    <nav>
+      <a href="#about-me" data-p="about-me">About me</a>
+      <a href="#selected-work" data-p="selected-work">Selected work</a>
+      <a href="#experiment" data-p="experiment">Experiment</a>
+      <a href="#shop" data-p="shop">Shop</a>
+      <button id="cartbtn" hidden aria-label="Abrir carrito"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.2a1 1 0 0 0 1 .8h9.2a1 1 0 0 0 1-.8L21 7H6"/></svg><span id="cartn"></span></button>
+    </nav>
+  </div>
+  <div class="bar"><a href="#home" id="name">Andrés Parra Sánchez</a></div>
+</header>
+
+<main>
+  <section class="page" id="home"><div id="index"></div></section>
+
+  <section class="page" id="about-me">
+    <div class="ab-top">
+      <span>Andrés Parra Sánchez</span>
+      <a href="#home" id="aboutx" aria-label="Close"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+    </div>
+    <div class="ab">
+      <div>
+        <p>Hello, my name is Andrés, and I am from Bogotá, Colombia.</p>
+        <p>I like to see design as a way to give meaning to the everyday, to transform ideas into realities.</p>
+        <p>In my projects, I always seek a balance between the functional, the aesthetic, and the conceptual.</p>
+      </div>
+      <div>
+        <p>It is important to me that my work carries a deeper significance, whether social, environmental, or cultural.</p>
+        <p>I like to think that design does more than just solve problems; it can also tell stories, create an impact, and forge genuine connections with people.</p>
+        <p>I truly enjoy experimenting with forms, materials, and visual references. I draw inspiration from my surroundings and try to ensure that each proposal has something special, something that says more than what meets the eye.</p>
+        <div class="ab2">
+          <div>
+            <p>Contact</p><p>&nbsp;</p>
+            <p>Alcoy,<br>Spain</p><p>&nbsp;</p>
+            <p><a href="https://www.behance.net/PARRAWIP" target="_blank" rel="noreferrer">@ParraWip</a><br><a href="mailto:parraandres123@outlook.es">parraandres123@outlook.es</a><br><a href="https://www.behance.net/PARRAWIP" target="_blank" rel="noreferrer">www.behance.net/PARRAWIP</a></p>
+          </div>
+          <div>
+            <p>Tools</p><p>&nbsp;</p>
+            <p>3ds max<br>Vray<br>Adobe Suite<br>Rhinoceros 3D<br>Blender<br>Solidworks<br>Autocad</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="selected-work"><div id="sw"></div></section>
+  <section class="page" id="experiment"><div class="masonry" id="exp"></div></section>
+  <section class="page" id="shop"><div class="ring" id="ring"><div class="mid"></div></div></section>
+  <section class="page" id="work"></section>
+</main>
+
+<div class="prev" id="prev"></div>
+<div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
+
+<aside class="cart" id="cart" aria-label="Shopping cart">
+  <div class="top"><span>Cart</span><button id="cartx" aria-label="Close">✕</button></div>
+  <ul id="items"></ul>
+  <p id="total"></p>
+  <p id="checkout-status" role="status" aria-live="polite"></p>
+  <button class="btn" id="checkout">Checkout</button>
+</aside>
+
+<script>
+/* ============ EDIT YOUR CONTENT HERE ============ */
+// img = cover image (e.g. 'project1.jpg'). imgs = all project images. tag = optional category.
+const WORKS = [
+  {title:'Móbula', year:2026, tag:'Furniture', desc:'Mobula stems from an observation of the fluid forms and symmetry of manta rays. This design language was translated into the product through a lightweight silhouette and a minimal, three-point support structure. The guiding principle here is one of structural organization: reducing elements, adapting the geometry to the user’s ergonomics, and optimizing material usage to maintain a restrained, essential visual presence.', text:'Mobula stems from an observation of the fluid forms and symmetry of manta rays. This design language was translated into the product through a lightweight silhouette and a minimal, three-point support structure. The guiding principle here is one of structural organization: reducing elements, adapting the geometry to the user’s ergonomics, and optimizing material usage to maintain a restrained, essential visual presence.', img:'images/mobula/portada.jpg', imgs:['images/mobula/portada.jpg','images/mobula/portada-2.jpg','images/mobula/final.jpg','images/mobula/final2.jpg','images/mobula/final3.jpg','images/mobula/long-chasis.jpg','images/mobula/tornilleria-1.jpg','images/mobula/tornilleria-2.jpg','images/mobula/chasis.jpg','images/mobula/closeup-1.jpg','images/mobula/closeup-2.jpg','images/mobula/closeup-3.jpg','images/mobula/closeup-4.jpg','images/mobula/explosionado.jpg']},
+  {title:'Modular Seating System', year:2026, tag:'Furniture', desc:'This project involves the design and development of a modular seating system built around a universal connection interface. By allowing users to seamlessly interchange various seat shells and leg structures, the system goes beyond surface-level customization, enabling the core components of the chair to adapt to shifting user preferences, activities, and living spaces over time. Rooted in circular economy principles, the design prioritizes disassembly, repairability, and material recovery. Users can easily upgrade aesthetics or replace worn parts without discarding the entire product, significantly extending its lifecycle. The project encompasses technical research into joinery mechanisms and the development of physical prototypes to validate structural stability, safety, cross-compatibility, and overall environmental impact reduction compared to conventional furniture.', text:'This project involves the design and development of a modular seating system built around a universal connection interface. By allowing users to seamlessly interchange various seat shells and leg structures, the system goes beyond surface-level customization, enabling the core components of the chair to adapt to shifting user preferences, activities, and living spaces over time. Rooted in circular economy principles, the design prioritizes disassembly, repairability, and material recovery. Users can easily upgrade aesthetics or replace worn parts without discarding the entire product, significantly extending its lifecycle. The project encompasses technical research into joinery mechanisms and the development of physical prototypes to validate structural stability, safety, cross-compatibility, and overall environmental impact reduction compared to conventional furniture.', img:'', imgs:[]},
+  {title:'Musculus', year:2024, tag:'Product', desc:'Musculus is a biomimetic chair inspired by human anatomy. Its rigid frame represents bones, while the padding mimics muscles in shape, texture, and color. Developed through sketches, 3D modeling, and ergonomic tests, it blends aesthetics and function in a dialogue between design and the body.', text:'Musculus is a biomimetic chair inspired by human anatomy. Its rigid frame represents bones, while the padding mimics muscles in shape, texture, and color. Developed through sketches, 3D modeling, and ergonomic tests, it blends aesthetics and function in a dialogue between design and the body.', img:'images/musculus/3.png', imgs:['images/musculus/3.png','images/musculus/4.png','images/musculus/5.png','images/musculus/6.png','images/musculus/7.png','images/musculus/8.png','images/musculus/9.png','images/musculus/10.png']},
+  {title:'Ankylo Ashtray', year:2024, tag:'Product', desc:'Ankylo Ashtray is a collection inspired by the armor of the Ankylosaurus. Its robust shape and tactile texture turn prehistoric morphology into a functional, sculptural object. Developed using 3D modeling and materials like ceramic and resin, the project blends design, natural history, and originality.', text:'Ankylo Ashtray is a collection inspired by the armor of the Ankylosaurus. Its robust shape and tactile texture turn prehistoric morphology into a functional, sculptural object. Developed using 3D modeling and materials like ceramic and resin, the project blends design, natural history, and originality.', img:'images/ankylo-ashtray/ash4.jpg', imgs:['images/ankylo-ashtray/ash4.jpg','images/ankylo-ashtray/ash5.jpg','images/ankylo-ashtray/ash3.jpg']},
+  {title:'Ashtray V2', year:2025, tag:'Product', desc:'A second iteration focused on refining the interaction and material quality.', text:'Ashtray V2 refines the original formal language to improve the sensory experience and visual stability. The proposal retains a bold identity while adapting more effectively to serial production.', img:'', imgs:[]},
+  {title:'Feria de mascotas', year:2025, tag:'Point of sale/graphic', desc:'This project entailed designing custom cardboard displays, point-of-sale (POS) fixtures, and thematic decorative elements for Promoción PLV’s exhibition space at a specialized pet trade fair. Rather than promoting consumer pet goods directly, the primary objective was to demonstrate the company’s structural packaging, display engineering, and custom manufacturing capabilities to prospective B2B clients, brands, and retail partners in attendance. The concept integrated playful, pet-centric graphic design with structural cardboard solutions, including freestanding floor displays, decorative backdrops, and interactive presentation elements. Every piece was engineered using sustainable, lightweight corrugated materials optimized for flat-pack shipping, quick on-site assembly, and high visual impact. The resulting booth served as a live, functional showcase of how creative cardboard engineering and tailored visual merchandising can elevate a brand’s presence at the point of sale.', text:'This project entailed designing custom cardboard displays, point-of-sale (POS) fixtures, and thematic decorative elements for Promoción PLV’s exhibition space at a specialized pet trade fair. Rather than promoting consumer pet goods directly, the primary objective was to demonstrate the company’s structural packaging, display engineering, and custom manufacturing capabilities to prospective B2B clients, brands, and retail partners in attendance. The concept integrated playful, pet-centric graphic design with structural cardboard solutions, including freestanding floor displays, decorative backdrops, and interactive presentation elements. Every piece was engineered using sustainable, lightweight corrugated materials optimized for flat-pack shipping, quick on-site assembly, and high visual impact. The resulting booth served as a live, functional showcase of how creative cardboard engineering and tailored visual merchandising can elevate a brand’s presence at the point of sale.', img:'images/feria-mascotas/feria-09.jpeg', imgs:['images/feria-mascotas/feria-09.jpeg','images/feria-mascotas/feria-11.jpeg','images/feria-mascotas/feria-04.jpeg','images/feria-mascotas/feria-08.jpeg','images/feria-mascotas/feria-02.jpeg','images/feria-mascotas/feria-06.jpeg','images/feria-mascotas/feria-05.jpeg','images/feria-mascotas/feria-10.jpeg','images/feria-mascotas/feria-03.jpeg','images/feria-mascotas/feria-01.jpeg','images/feria-mascotas/feria-12.jpeg','images/feria-mascotas/feria-07.jpeg']},
+  {title:'Treecycle', year:2024, tag:'Lighting', desc:'Treecycle, a lamp made from recycled cardboard in the shape of a tree, goes beyond mere illumination by telling a story of environmental respect. Every detail reflects the designer’s commitment to reuse, conveying a clear message about the importance of caring for our surroundings. This innovative creation, the result of creativity and a commitment to sustainability, redefines the concept of lighting by merging contemporary design and ecological awareness. Treecycle is more than just a lamp; it is a testament to the power of design as a positive force on the path toward a more environmentally conscious future.', text:'Treecycle, a lamp made from recycled cardboard in the shape of a tree, goes beyond mere illumination by telling a story of environmental respect. Every detail reflects the designer’s commitment to reuse, conveying a clear message about the importance of caring for our surroundings. This innovative creation, the result of creativity and a commitment to sustainability, redefines the concept of lighting by merging contemporary design and ecological awareness. Treecycle is more than just a lamp; it is a testament to the power of design as a positive force on the path toward a more environmentally conscious future.', img:'images/treecycle/treecycle2.jpg', imgs:['images/treecycle/treecycle2.jpg','images/treecycle/treecycle1.jpg','images/treecycle/treecycle4.jpg','images/treecycle/treecycle5.jpg','images/treecycle/treecycle6.jpg','images/treecycle/treecycle7.jpg','images/treecycle/treecycle8.jpg','images/treecycle/treecycle9.jpg','images/treecycle/treecycle10.jpg']},
+  {title:'Organic table', year:2024, tag:'Furniture', desc:'Organic Table balances organic shapes with industrial precision. A chrome metal structure supports a tempered glass top, creating a light, sophisticated, and modern piece. The curved base evokes nature, while the technical design ensures strength and stability.', text:'Organic Table balances organic shapes with industrial precision. A chrome metal structure supports a tempered glass top, creating a light, sophisticated, and modern piece. The curved base evokes nature, while the technical design ensures strength and stability.', img:'images/organic-table/table-1.jpg', imgs:['images/organic-table/table-1.jpg','images/organic-table/table-2.jpg','images/organic-table/table-3.jpg']}
+];
+const PRODUCTS = [
+  {id:'p1', name:'Ashtray V2', price:20, priceText:'20 €', desc:'A ceramic and metal ashtray with a stable base and textured finish.', imgs:[]}
+];
+const EXPERIMENTS = Array.from({length:48},(_,i)=>`images/experimentation/experiment-${String(i+1).padStart(2,'0')}.jpeg`);
+for(let i=EXPERIMENTS.length-1;i>0;i--){
+  const j=Math.floor(Math.random()*(i+1));
+  [EXPERIMENTS[i],EXPERIMENTS[j]]=[EXPERIMENTS[j],EXPERIMENTS[i]];
+}
+/* ================================================== */
+
+const $ = s => document.querySelector(s);
+const pic = (s,a) => s ? `<img src="${s}" alt="${a||''}">` : '';
+
+/* Home: year-grouped index with project preview */
+const years=[...new Set(WORKS.map(w=>w.year))].sort((a,b)=>b-a);
+$('#index').innerHTML=years.map(y=>`<div class="yr">${y}</div>`+WORKS.map((w,i)=>w.year===y?`<a class="line" href="#work-${i}" data-i="${i}"><span>${w.title}${w.title==='Modular Seating System'?' <span class="wip">[WIP]</span>':''}</span><span>${w.tag||''}</span></a>`:'').join('')).join('');
+const prev=$('#prev');
+const closePrev=()=>prev.classList.remove('on');
+$('#index').addEventListener('click',e=>{
+  const l=e.target.closest('.line'); if(!l)return;
+  e.preventDefault();
+  const i=+l.dataset.i, w=WORKS[i];
+  prev.innerHTML=`<div class="hd"><span>${w.title}</span><button id="prevx" aria-label="Close">✕</button></div><div class="im" ${w.img?'':'style="aspect-ratio:4/3"'}>${pic(w.img,w.title)}</div><a class="go" href="#work-${i}">View project →</a>`;
+  prev.classList.add('on');
+  $('#prevx').onclick=closePrev;
+});
+document.addEventListener('click',e=>{if(!prev.contains(e.target)&&!e.target.closest('.line'))closePrev()});
+
+/* Selected work: use fallback ratios only when a project has no cover image */
+const R=['4/3','4/3','3/4','3/2'];
+$('#sw').innerHTML=years.map(y=>`<div class="yr">${y}</div><div class="sw">`+WORKS.map((w,i)=>w.year===y?`<a class="card" href="#work-${i}"><div class="im" ${w.img?'':`style="aspect-ratio:${w.r||R[i%4]}"`}>${pic(w.img,w.title)}</div><div class="cap">${w.title}${w.title==='Modular Seating System'?' <span class="wip">[WIP]</span>':''}${w.tag?` <span class="category">— ${w.tag}</span>`:''}</div></a>`:'').join('')+`</div>`).join('');
+
+/* Proyecto abierto */
+function renderWork(i){
+  const w=WORKS[i], g=w.imgs.length?w.imgs:['','',''];
+  $('#work').innerHTML=`<div class="proj"><a class="back" href="#home">← Back</a><h1>${w.title}${w.title==='Modular Seating System'?' <span class="wip">[WIP]</span>':''}</h1><p class="meta">${w.year}${w.tag?' · '+w.tag:''}</p><p class="txt">${w.text}</p>${g.map(s=>`<div class="im">${pic(s,w.title)}</div>`).join('')}</div>`;
+}
+
+/* Experiment */
+$('#exp').innerHTML=EXPERIMENTS.map(src=>`<div style="--tilt:${(Math.random()*3-1.5).toFixed(2)}deg">${pic(src,'Experimentation photo')}</div>`).join('');
+
+/* Productos del shop */
+$('#ring').insertAdjacentHTML('beforeend',PRODUCTS.map((p,i)=>`<button class="prod" data-product-id="${p.id}" style="--a:${i*360/PRODUCTS.length}deg" onclick="openProd('${p.id}')"><div class="c">${pic(p.imgs[0],p.name)}</div><small><span class="prod-title">${p.name}</span><br><span class="prod-price">${p.priceText}</span></small></button>`).join(''));
+
+const shopRing=$('#ring');
+const shopItems=[...shopRing.querySelectorAll('.prod')];
+let shopStates=[];
+let shopMotionActive=false;
+let shopMotionFrame=0;
+let shopMotionTime=0;
+
+function initShopMotion(){
+  const width=shopRing.clientWidth, height=shopRing.clientHeight;
+  const columns=Math.ceil(Math.sqrt(shopItems.length*width/Math.max(height,1)));
+  const rows=Math.ceil(shopItems.length/columns);
+  shopStates=shopItems.map((el,i)=>{
+    const itemWidth=el.offsetWidth*1.08, itemHeight=el.offsetHeight*1.08;
+    const column=i%columns, row=Math.floor(i/columns);
+    const cellWidth=width/columns, cellHeight=height/rows;
+    const minX=itemWidth/2, maxX=Math.max(minX,width-itemWidth/2);
+    const minY=itemHeight/2, maxY=Math.max(minY,height-itemHeight/2);
+    const x=Math.max(minX,Math.min(maxX,(column+.5)*cellWidth));
+    const y=Math.max(minY,Math.min(maxY,(row+.5)*cellHeight));
+    const angle=Math.random()*Math.PI*2;
+    const speed=28+Math.random()*20;
+    el.style.left=`${x}px`;
+    el.style.top=`${y}px`;
+    return {el,x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,width:itemWidth,height:itemHeight};
+  });
+  shopMotionTime=0;
+}
+
+function animateShop(timestamp){
+  if(!shopMotionActive){shopMotionFrame=0;shopMotionTime=0;return}
+  if(!shopMotionTime)shopMotionTime=timestamp;
+  const delta=Math.min((timestamp-shopMotionTime)/1000,.05);
+  shopMotionTime=timestamp;
+  const width=shopRing.clientWidth, height=shopRing.clientHeight;
+
+  shopStates.forEach(item=>{
+    const minX=item.width/2, maxX=Math.max(minX,width-item.width/2);
+    const minY=item.height/2, maxY=Math.max(minY,height-item.height/2);
+    item.x+=item.vx*delta;
+    item.y+=item.vy*delta;
+    if(item.x<minX){item.x=minX;item.vx=Math.abs(item.vx)}
+    else if(item.x>maxX){item.x=maxX;item.vx=-Math.abs(item.vx)}
+    if(item.y<minY){item.y=minY;item.vy=Math.abs(item.vy)}
+    else if(item.y>maxY){item.y=maxY;item.vy=-Math.abs(item.vy)}
+  });
+
+  for(let pass=0;pass<2;pass++){
+    for(let i=0;i<shopStates.length;i++){
+      for(let j=i+1;j<shopStates.length;j++){
+        const a=shopStates[i], b=shopStates[j];
+        const dx=b.x-a.x, dy=b.y-a.y;
+        const overlapX=(a.width+b.width)/2-Math.abs(dx);
+        const overlapY=(a.height+b.height)/2-Math.abs(dy);
+        if(overlapX<=0||overlapY<=0)continue;
+
+        if(overlapX<overlapY){
+          const direction=dx===0?(i%2?1:-1):Math.sign(dx);
+          const correction=overlapX/2;
+          a.x-=direction*correction;
+          b.x+=direction*correction;
+          const relativeVelocity=(b.vx-a.vx)*direction;
+          if(relativeVelocity<0)[a.vx,b.vx]=[b.vx,a.vx];
+        }else{
+          const direction=dy===0?(i%2?1:-1):Math.sign(dy);
+          const correction=overlapY/2;
+          a.y-=direction*correction;
+          b.y+=direction*correction;
+          const relativeVelocity=(b.vy-a.vy)*direction;
+          if(relativeVelocity<0)[a.vy,b.vy]=[b.vy,a.vy];
+        }
+      }
+    }
+  }
+
+  shopStates.forEach(item=>{
+    const minX=item.width/2, maxX=Math.max(minX,width-item.width/2);
+    const minY=item.height/2, maxY=Math.max(minY,height-item.height/2);
+    if(item.x<minX){item.x=minX;item.vx=Math.abs(item.vx)}
+    else if(item.x>maxX){item.x=maxX;item.vx=-Math.abs(item.vx)}
+    if(item.y<minY){item.y=minY;item.vy=Math.abs(item.vy)}
+    else if(item.y>maxY){item.y=maxY;item.vy=-Math.abs(item.vy)}
+    item.el.style.left=`${item.x}px`;
+    item.el.style.top=`${item.y}px`;
+  });
+  shopMotionFrame=requestAnimationFrame(animateShop);
+}
+
+function setShopMotion(active){
+  shopMotionActive=active;
+  if(active){
+    if(!shopStates.length)initShopMotion();
+    if(!shopMotionFrame)shopMotionFrame=requestAnimationFrame(animateShop);
+  }
+}
+
+/* Producto */
+const modal=$('#modal'), sheet=$('#sheet');
+const closeModal=()=>modal.classList.remove('on');
+modal.onclick=e=>{if(e.target===modal)closeModal()};
+function swap(s){$('#mainimg').innerHTML=pic(s)}
+function openProd(id){
+  const p=PRODUCTS.find(q=>q.id===id), g=p.imgs.length?p.imgs:['','',''];
+  sheet.innerHTML=`<button class="x" onclick="closeModal()" aria-label="Close">✕</button>
+  <div><div class="main" id="mainimg">${pic(g[0],p.name)}</div><div class="thumbs">${g.map(s=>`<button onclick="swap('${s}')" aria-label="View photo">${pic(s)}</button>`).join('')}</div></div>
+  <div><h3>${p.name}</h3><p class="muted prod-price">${p.priceText}</p><p>${p.desc}</p><button class="btn" onclick="addCart('${id}')" ${p.price===null?'disabled':''}>${p.price===null?'Unavailable':'Add to cart'}</button></div>`;
+  modal.classList.add('on');
+}
+
+/* Cart */
+let cart=[]; try{cart=JSON.parse(localStorage.getItem('cart')||'[]')}catch(e){}
+const find=id=>PRODUCTS.find(p=>p.id===id);
+let storeShippingReady=false;
+cart=cart.filter(c=>find(c.id)&&Number.isInteger(c.q)&&c.q>0&&c.q<=99);
+function drawCart(){
+  try{localStorage.setItem('cart',JSON.stringify(cart))}catch(e){}
+  $('#cartn').textContent=cart.reduce((n,c)=>n+c.q,0)||'';
+  $('#items').innerHTML=cart.length?cart.map(c=>`<li><span><span class="cart-title">${find(c.id).name}</span><br><span class="muted prod-price">${find(c.id).priceText}</span></span><span><button onclick="qty('${c.id}',-1)" aria-label="Decrease quantity">−</button>${c.q}<button onclick="qty('${c.id}',1)" aria-label="Increase quantity">+</button></span></li>`).join(''):'<li class="muted">Your cart is empty.</li>';
+  $('#total').textContent=cart.length&&cart.every(c=>find(c.id).price!==null)?'Total: '+cart.reduce((n,c)=>n+c.q*find(c.id).price,0).toLocaleString(undefined,{style:'currency',currency:'EUR'}):'Total: to be confirmed';
+  $('#checkout').disabled=!storeShippingReady||!cart.length||!cart.every(c=>find(c.id).checkoutAvailable);
+}
+function addCart(id){const p=find(id);if(!p||p.price===null)return;const l=cart.find(c=>c.id===id);if(l){if(l.q>=99)return;l.q++}else cart.push({id,q:1});drawCart();closeModal();$('#cart').classList.add('on')}
+function qty(id,d){const l=cart.find(c=>c.id===id);if(!l)return;l.q=Math.min(99,l.q+d);if(l.q<1)cart=cart.filter(c=>c!==l);drawCart()}
+$('#cartbtn').onclick=()=>$('#cart').classList.add('on');
+$('#cartx').onclick=()=>$('#cart').classList.remove('on');
+async function readStoreResponse(response,fallback){
+  let data;
+  try{
+    data=await response.json();
+  }catch{
+    if(location.protocol==='file:'||response.status===403||response.status===404){
+      throw new Error('Checkout service unavailable. Open the deployed Netlify site; opening this HTML file directly does not run its payment function.');
+    }
+    throw new Error(`Checkout service returned an invalid response (HTTP ${response.status}).`);
+  }
+  if(!response.ok)throw new Error(data.error||fallback);
+  return data;
+}
+async function loadStorePrices(){
+  try{
+    const response=await fetch('/.netlify/functions/store',{cache:'no-store'});
+    const data=await readStoreResponse(response,'Store prices are not available.');
+    storeShippingReady=data.checkoutConfigured===true;
+    PRODUCTS.forEach(p=>{
+      const price=data.prices[p.id];
+      p.checkoutAvailable=Boolean(price);
+      if(!price)return;
+      p.price=price.amount/100;
+      p.priceText=new Intl.NumberFormat(undefined,{style:'currency',currency:'EUR'}).format(p.price);
+      document.querySelector(`[data-product-id="${p.id}"] .prod-price`).textContent=p.priceText;
+    });
+    $('#checkout-status').textContent=cart.length&&!cart.every(c=>find(c.id).checkoutAvailable)
+      ?'This product is not configured for secure checkout yet.'
+      :storeShippingReady?'':'Worldwide shipping checkout is not configured yet.';
+    drawCart();
+  }catch(error){
+    $('#checkout-status').textContent=error.message||'Store prices could not be loaded.';
+  }
+}
+$('#checkout').onclick=async()=>{
+  if(!cart.length)return;
+  const button=$('#checkout'), status=$('#checkout-status');
+  button.disabled=true;
+  status.textContent='Connecting to secure checkout…';
+  try{
+    const response=await fetch('/.netlify/functions/store',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({items:cart.map(({id,q})=>({id,quantity:q}))})
+    });
+    const data=await readStoreResponse(response,'Checkout could not be started.');
+    if(!data.url||new URL(data.url).hostname!=='checkout.stripe.com')throw new Error('Stripe returned an invalid checkout address.');
+    location.assign(data.url);
+  }catch(error){
+    status.textContent=error.message||'Could not connect to secure checkout. Please try again.';
+    button.disabled=false;
+  }
+};
+$('#aboutx').onclick=e=>{e.preventDefault();location.hash=lastHash};
+drawCart();
+loadStorePrices();
+addEventListener('keydown',e=>{if(e.key==='Escape'){if(location.hash==='#about-me')location.hash=lastHash;closePrev();closeModal();$('#cart').classList.remove('on')}});
+
+/* Nombre: ajustado al ancho de la barra roja */
+function fit(){
+  const a=$('#name'), bar=a.parentElement;
+  a.style.fontSize='100px';
+  a.style.fontSize=(100*(bar.clientWidth-32)/a.scrollWidth)+'px';
+  document.documentElement.style.setProperty('--hh',document.querySelector('header').offsetHeight+'px');
+}
+
+const bar = document.querySelector('.bar');
+const nameLink = $('#name');
+let isInsideBar = false;
+let hoverScale = 1;
+let targetX = 0, targetY = 0;
+let currentX = 0, currentY = 0;
+let currentScale = 1;
+
+function animateName() {
+  currentScale += (hoverScale - currentScale) * 0.2;
+  currentX += (targetX - currentX) * 0.22;
+  currentY += (targetY - currentY) * 0.22;
+  nameLink.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
+  requestAnimationFrame(animateName);
+}
+requestAnimationFrame(animateName);
+
+bar.addEventListener('pointerenter', () => {
+  isInsideBar = true;
+  hoverScale = 0.38;
+});
+
+bar.addEventListener('pointerleave', () => {
+  isInsideBar = false;
+  hoverScale = 1;
+  targetX = 0;
+  targetY = 0;
+});
+
+bar.addEventListener('pointermove', e => {
+  if (!isInsideBar) return;
+  const rect = bar.getBoundingClientRect();
+  const nx = Math.max(-1, Math.min(1, ((e.clientX - rect.left) / rect.width - 0.5) * 2));
+  const ny = Math.max(-1, Math.min(1, ((e.clientY - rect.top) / rect.height - 0.5) * 2));
+  const maxX = Math.max(0, (rect.width - nameLink.offsetWidth * hoverScale) / 2);
+  const maxY = Math.max(0, (rect.height - nameLink.offsetHeight * hoverScale) / 2);
+  targetX = nx * maxX;
+  targetY = ny * maxY;
+});
+
+addEventListener('resize',()=>{fit();if(shopMotionActive)initShopMotion()}); fit();
+if(document.fonts)document.fonts.ready.then(fit);
+
+/* Navigation */
+const pages=document.querySelectorAll('.page'), links=document.querySelectorAll('nav a');
+let lastHash='#home';
+function route(){
+  let id=(location.hash||'#home').slice(1);
+  if(id.startsWith('work-')&&WORKS[+id.slice(5)]){renderWork(+id.slice(5));id='work'}
+  else if(!document.getElementById(id)||id==='work')id='home';
+  pages.forEach(p=>p.classList.toggle('on',p.id===id));
+  links.forEach(a=>a.classList.toggle('on',a.dataset.p===id));
+  if(id!=='about-me')lastHash=location.hash||'#home';
+  document.body.classList.toggle('noscroll',id==='about-me');
+  $('#cartbtn').hidden=id!=='shop';
+  setShopMotion(id==='shop');
+  if(id!=='shop')$('#cart').classList.remove('on');
+  prev.classList.remove('on'); closeModal(); scrollTo(0,0);
+}
+addEventListener('hashchange',route);
+links.forEach(l=>l.addEventListener('click',()=>setTimeout(route,0)));
+route();
+async function handleCheckoutReturn(){
+  const params=new URLSearchParams(location.search), result=params.get('checkout');
+  if(!result)return;
+  $('#cart').classList.add('on');
+  const status=$('#checkout-status');
+  if(result==='cancelled'){
+    status.textContent='Checkout was cancelled. Your cart is still here.';
+    history.replaceState(null,'',location.pathname+'#shop');
+    return;
+  }
+  if(result!=='success')return;
+  const sessionId=params.get('session_id');
+  if(!sessionId){status.textContent='Could not verify the checkout session.';return}
+  status.textContent='Verifying payment…';
+  try{
+    const response=await fetch(`/.netlify/functions/store?session_id=${encodeURIComponent(sessionId)}`,{cache:'no-store'});
+    const data=await readStoreResponse(response,'Payment status could not be verified.');
+    if(data.paymentStatus==='paid'){
+      cart=[];
+      drawCart();
+      status.textContent='Payment confirmed by Stripe.';
+      history.replaceState(null,'',location.pathname+'#shop');
+    }else{
+      status.textContent='Payment is still processing. Your cart has been kept.';
+    }
+  }catch(error){
+    status.textContent=error.message||'Payment status could not be verified.';
+  }
+}
+handleCheckoutReturn();
+</script>
+</body>
+</html>

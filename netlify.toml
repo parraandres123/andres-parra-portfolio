@@ -1,0 +1,7 @@
+[build]
+command = "node scripts/prepare-netlify-site.mjs"
+publish = "site"
+functions = "netlify/functions"
+
+[build.environment]
+NODE_VERSION = "20"
