@@ -10,7 +10,7 @@ const reply = (statusCode, data) => ({
 
 function stripeKey(){
   const key=process.env.STRIPE_SECRET_KEY;
-  return key&&/^sk_(test|live)_/.test(key)?key:null;
+  return key&&/^(sk|rk)_(test|live)_/.test(key)?key:null;
 }
 
 async function stripeRequest(path,{key,method='GET',body}){
