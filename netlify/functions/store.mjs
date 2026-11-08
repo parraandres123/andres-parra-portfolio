@@ -36,7 +36,7 @@ async function getStripePrice(key,id,priceId){
     throw new Error('Configured store prices are unavailable.');
   }
   if(FIXED_PRICE_AMOUNTS[id]!==undefined&&price.unit_amount!==FIXED_PRICE_AMOUNTS[id]){
-    throw new Error('The Ashtray V2 Stripe price must be exactly EUR 20.00.');
+    throw new Error('The Tooshie Stripe price must be exactly EUR 20.00.');
   }
   return {amount:price.unit_amount,currency:price.currency};
 }
