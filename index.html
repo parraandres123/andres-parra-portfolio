@@ -266,7 +266,7 @@ const WORKS = [
 const PRODUCTS = [
   {id:'p1', name:'Tooshie', price:20, priceText:'20 €', desc:'A ceramic and metal ashtray with a stable base and textured finish.', imgs:[]}
 ];
-const EXPERIMENTS = Array.from({length:48},(_,i)=>`images/experimentation/experiment-${String(i+1).padStart(2,'0')}.jpeg`);
+const EXPERIMENTS = Array.from({length:62},(_,i)=>`images/experimentation/experiment-${String(i+1).padStart(2,'0')}.jpeg`);
 for(let i=EXPERIMENTS.length-1;i>0;i--){
   const j=Math.floor(Math.random()*(i+1));
   [EXPERIMENTS[i],EXPERIMENTS[j]]=[EXPERIMENTS[j],EXPERIMENTS[i]];
