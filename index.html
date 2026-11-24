@@ -113,6 +113,9 @@ nav a.on{text-decoration:underline;text-underline-offset:5px}
 .proj .txt{max-width:60ch;font-size:1.15rem;font-weight:400;margin:0 0 40px}
 .proj .im{width:fit-content;max-width:100%;background:var(--phbg);margin:0 auto 20px;overflow:visible}
 .proj .im img{width:auto;max-width:100%;height:auto;object-fit:contain;margin-inline:auto}
+.proj .tooshie-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;margin-bottom:20px}
+.proj .tooshie-gallery .im{width:auto;max-width:none;aspect-ratio:1;margin:0;overflow:hidden}
+.proj .tooshie-gallery .im img{width:100%;max-width:none;height:100%;object-fit:contain}
 
 /* About me: pantalla completa en dos columnas */
 #about-me{position:fixed;inset:0;z-index:90;margin:0;padding:0;background:var(--bg);overflow:auto}
@@ -298,7 +301,8 @@ $('#sw').innerHTML=years.map(y=>`<div class="yr">${y}</div><div class="sw">`+WOR
 /* Proyecto abierto */
 function renderWork(i){
   const w=WORKS[i], g=w.imgs.length?w.imgs:['','',''];
-  $('#work').innerHTML=`<div class="proj"><a class="back" href="#home">← Back</a><h1>${w.title}${w.title==='Modular Seating System'?' <span class="wip">[WIP]</span>':''}</h1><p class="meta">${w.year}${w.tag?' · '+w.tag:''}</p><p class="txt">${w.text}</p>${g.map(s=>`<div class="im">${pic(s,w.title)}</div>`).join('')}</div>`;
+  const images=w.title==='Tooshie'?`<div class="tooshie-gallery">${g.map(s=>`<div class="im">${pic(s,w.title)}</div>`).join('')}</div>`:g.map(s=>`<div class="im">${pic(s,w.title)}</div>`).join('');
+  $('#work').innerHTML=`<div class="proj"><a class="back" href="#home">← Back</a><h1>${w.title}${w.title==='Modular Seating System'?' <span class="wip">[WIP]</span>':''}</h1><p class="meta">${w.year}${w.tag?' · '+w.tag:''}</p><p class="txt">${w.text}</p>${images}</div>`;
 }
 
 /* Experiment */
