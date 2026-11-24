@@ -1,5 +1,5 @@
 const PRODUCT_IDS = ['p1'];
-const FIXED_PRICE_AMOUNTS = {p1:2000};
+const FIXED_PRICE_AMOUNTS = {p1:3990};
 const JSON_HEADERS = {'content-type':'application/json; charset=utf-8','cache-control':'no-store'};
 
 const reply = (statusCode, data) => ({
@@ -36,7 +36,7 @@ async function getStripePrice(key,id,priceId){
     throw new Error('Configured store prices are unavailable.');
   }
   if(FIXED_PRICE_AMOUNTS[id]!==undefined&&price.unit_amount!==FIXED_PRICE_AMOUNTS[id]){
-    throw new Error('The Tooshie Stripe price must be exactly EUR 20.00.');
+    throw new Error('The Tooshie Stripe price must be exactly EUR 39.90.');
   }
   return {amount:price.unit_amount,currency:price.currency};
 }
